@@ -27,6 +27,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'bundler', '~> 2.1', '>= 2.1.4'
   s.add_development_dependency 'json', '~> 2.6', '>= 2.6.2'
   s.add_development_dependency 'rake', '~> 13.0', '>= 13.0.6'
-  s.add_development_dependency 'rest-client'
+  s.add_development_dependency 'faraday', '~> 2.6', '>= 2.6.0'
   s.add_development_dependency 'rspec', '~> 3.12', '>= 3.12.0'
 end

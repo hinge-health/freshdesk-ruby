@@ -14,8 +14,8 @@ RSpec.describe Freshdesk do
       expect(Freshdesk::VERSION).not_to be nil
     end
 
-    it 'returns version number 0.1.0' do
-      expect(Freshdesk::VERSION).to eq('0.1.0')
+    it 'returns version number 1.0.1' do
+      expect(Freshdesk::VERSION).to eq('1.0.1')
     end
   end
 
@@ -94,14 +94,6 @@ RSpec.describe Freshdesk do
     it 'returns json string' do
       expect(@resource.json_payload).to eq(@params.to_json)
       expect(@resource.json_payload).to be_a_kind_of(String)
-    end
-
-    it 'raises rest client exception error on post method with invalid configurations' do
-      expect{ @resource.post }.to raise_error(RestClient::Exception)
-    end
-
-    it 'raises rest client exception error on get method with invalid configurations' do
-      expect{ @resource.get }.to raise_error(RestClient::Exception)
     end
   end
 
