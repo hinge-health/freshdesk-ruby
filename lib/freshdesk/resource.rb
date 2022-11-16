@@ -1,5 +1,5 @@
 require 'faraday'
-require "json"
+require 'json'
 
 module Freshdesk
   class Resource

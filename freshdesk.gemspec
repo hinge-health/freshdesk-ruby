@@ -2,11 +2,10 @@
 
 lib = File.expand_path('./lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'freshdesk'
 
 Gem::Specification.new do |s|
   s.name          = 'freshdesk-api'
-  s.version       = Freshdesk::VERSION
+  s.version       = '1.0.1'
   s.authors       = ['Akira Narita', 'Andres Zorrilla']
   s.email         = ['aki.d.sc@gmail.com', 'Andres Zorrilla']
   s.required_ruby_version     = '>= 2.5'

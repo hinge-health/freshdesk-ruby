@@ -9,12 +9,12 @@ module Freshdesk
         new("/tickets/outbound_email").resource(params: params).post
       end
 
-      def view_a_ticket(id:, query: "")
-        new("/tickets/#{id}#{query}").resource(id: id).get
+      def view_a_ticket(id:, params: {})
+        new("/tickets/#{id}").resource(id: id, params: params).get
       end
 
-      def list_all_tickets(query: "")
-        new("/tickets#{query}").resource.get
+      def list_all_tickets(params: {})
+        new("/tickets").resource(params: params).get
       end
 
       def update_a_ticket(id:, params: {})
