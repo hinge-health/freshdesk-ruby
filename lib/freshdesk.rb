@@ -6,6 +6,7 @@ require 'freshdesk/freshdesk_object'
 require 'freshdesk/resource'
 
 require 'freshdesk/agent'
+require 'freshdesk/company'
 require 'freshdesk/ticket'
 
 module Freshdesk
