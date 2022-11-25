@@ -25,7 +25,7 @@ module Freshdesk
 
     def post
       ::Faraday.post(api_url, json_payload, headers).then do |response|
-        return JSON.parse(response.body) if response.success?
+        return JSON.parse(response.body)
 
       rescue StandardError
         raise ::Faraday::BadRequestError, api_error_message(response)
@@ -34,7 +34,7 @@ module Freshdesk
 
     def get
       ::Faraday.get(api_url, params, headers).then do |response|
-        return JSON.parse(response.body) if response.success?
+        return JSON.parse(response.body)
 
       rescue StandardError
         raise ::Faraday::BadRequestError, api_error_message(response)
@@ -43,7 +43,7 @@ module Freshdesk
 
     def put
       ::Faraday.put(api_url, json_payload, headers).then do |response|
-        return JSON.parse(response.body) if response.success?
+        return JSON.parse(response.body)
 
       rescue StandardError
         raise ::Faraday::BadRequestError, api_error_message(response)
@@ -52,7 +52,7 @@ module Freshdesk
 
     def delete
       ::Faraday.delete(api_url, headers).then do |response|
-        return JSON.parse(response.body) if response.success?
+        return JSON.parse(response.body)
 
       rescue StandardError
         raise ::Faraday::BadRequestError, api_error_message(response)

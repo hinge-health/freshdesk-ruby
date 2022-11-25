@@ -6,7 +6,7 @@ module Freshdesk
         end
   
         def view_a_company(id:, params: {})
-          new("/companies/#{id}").resource(id: id, params: params).get
+          new("/companies/#{id}").resource(params: params).get
         end
   
         def list_all_companies(params: {})
@@ -22,15 +22,15 @@ module Freshdesk
         end
   
         def update_a_company(id:, params: {})
-          new("/companies/#{id}").resource(id: id, params: params).put
+          new("/companies/#{id}").resource(params: params).put
         end
   
         def delete_a_company(id:)
-          new("/companies/#{id}").resource(id: id).delete
+          new("/companies/#{id}").resource.delete
         end
   
         def restore_a_company(id:)
-          new("/companies/#{id}/restore").resource(id: id).put
+          new("/companies/#{id}/restore").resource.put
         end
       end
     end

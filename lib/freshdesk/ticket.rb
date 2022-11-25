@@ -18,15 +18,15 @@ module Freshdesk
       end
 
       def update_a_ticket(id:, params: {})
-        new("/tickets/#{id}").resource(id: id, params: params).put
+        new("/tickets/#{id}").resource(params: params).put
       end
 
       def delete_a_ticket(id:)
-        new("/tickets/#{id}").resource(id: id).delete
+        new("/tickets/#{id}").resource.delete
       end
 
       def restore_a_ticket(id:)
-        new("/tickets/#{id}/restore").resource(id: id).put
+        new("/tickets/#{id}/restore").resource.put
       end
 
       def list_all_ticket_fields
@@ -34,11 +34,11 @@ module Freshdesk
       end
 
       def list_all_conversations_of_a_ticket(id:)
-        new("/tickets/#{id}/conversations").resource(id: id).get
+        new("/tickets/#{id}/conversations").resource.get
       end
 
       def list_all_time_entries_of_a_ticket(id:)
-        new("/tickets/#{id}/time_entries").resource(id: id).get
+        new("/tickets/#{id}/time_entries").resource.get
       end
 
       def list_all_satisfaction_ratings_of_a_ticket(ticket_id:)

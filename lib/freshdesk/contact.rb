@@ -6,7 +6,7 @@ module Freshdesk
         end
   
         def view_a_contact(id:, params: {})
-          new("/contacts/#{id}").resource(id: id, params: params).get
+          new("/contacts/#{id}").resource(params: params).get
         end
   
         def list_all_contacts(params: {})
@@ -22,15 +22,15 @@ module Freshdesk
         end
   
         def update_a_contact(id:, params: {})
-          new("/contacts/#{id}").resource(id: id, params: params).put
+          new("/contacts/#{id}").resource(params: params).put
         end
   
         def delete_a_contact(id:)
-          new("/contacts/#{id}").resource(id: id).delete
+          new("/contacts/#{id}").resource.delete
         end
   
         def restore_a_contact(id:)
-          new("/contacts/#{id}/restore").resource(id: id).put
+          new("/contacts/#{id}/restore").resource.put
         end
       end
     end
