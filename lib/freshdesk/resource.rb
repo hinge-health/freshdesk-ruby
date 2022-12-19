@@ -1,5 +1,5 @@
-require "rest-client"
-require "json"
+require 'faraday'
+require 'json'
 
 module Freshdesk
   class Resource
@@ -11,12 +11,6 @@ module Freshdesk
       @user_name_or_api_key = Freshdesk.user_name_or_api_key
       @password_or_x        = Freshdesk.password_or_x
       @api_version          = Freshdesk.api_version
-
-      @resource ||= RestClient::Resource.new(
-        api_url,
-        @user_name_or_api_key,
-        @password_or_x
-      )
     end
 
     attr_reader :endpoint, :params
@@ -30,36 +24,60 @@ module Freshdesk
     end
 
     def post
-      @resource.post(json_payload, content_type: "application/json")
-    rescue RestClient::Exception => e
-      raise e, api_error_message(e)
+      ::Faraday.post(api_url, json_payload, headers).then do |response|
+        return JSON.parse(response.body)
+
+      rescue StandardError
+        raise ::Faraday::BadRequestError, api_error_message(response)
+      end
     end
 
     def get
-      @resource.get(accept: "application/json")
-    rescue RestClient::Exception => e
-      raise e, api_error_message(e)
-    end
+      ::Faraday.get(api_url, params, headers).then do |response|
+        return JSON.parse(response.body)
 
-    def delete
-      @resource.delete(accept: "application/json")
-    rescue RestClient::Exception => e
-      raise e, api_error_message(e)
+      rescue StandardError
+        raise ::Faraday::BadRequestError, api_error_message(response)
+      end
     end
 
     def put
-      @resource.put(json_payload, content_type: "application/json")
-    rescue RestClient::Exception => e
-      raise e, api_error_message(e)
+      ::Faraday.put(api_url, json_payload, headers).then do |response|
+        return JSON.parse(response.body)
+
+      rescue StandardError
+        raise ::Faraday::BadRequestError, api_error_message(response)
+      end
+    end
+
+    def delete
+      ::Faraday.delete(api_url, headers).then do |response|
+        return JSON.parse(response.body)
+
+      rescue StandardError
+        raise ::Faraday::BadRequestError, api_error_message(response)
+      end
     end
 
     private
 
-    def api_error_message(e)
+    def api_error_message(response)
       "API Error: Your request is not successful." \
       "If you are not able to debug this error properly, mail us at support@freshdesk.com with the follwing X-Request-Id" \
-      "X-Request-Id : #{e.response.headers[:x_request_id]}" \
-      "Response Code: #{e.response.code} Response Body: #{e.response.body}"
+      "X-Request-Id : #{response.headers[:x_request_id]}" \
+      "Response Code: #{response.status} Response Body: #{response.body}"
+    end
+
+    def headers
+      {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        Authorization: "Basic #{auth_header}"
+      }
+    end
+
+    def auth_header
+      Base64.strict_encode64("#{@user_name_or_api_key}:#{@password_or_x}")
     end
   end
 end
