@@ -5,10 +5,10 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |s|
   s.name          = 'freshdesk-api'
-  s.version       = '1.0.1'
+  s.version       = '1.0.2'
   s.authors       = ['Akira Narita', 'Andres Zorrilla']
-  s.email         = ['aki.d.sc@gmail.com', 'Andres Zorrilla']
-  s.required_ruby_version     = '>= 2.5'
+  s.email         = ['aki.d.sc@gmail.com', 'andreszorrillav@gmail.com']
+  s.required_ruby_version     = '>= 3.0.5'
   s.required_rubygems_version = '>= 1.8.11'
 
   s.summary       = 'A Ruby API client for Freshdesk API v2'
@@ -27,5 +27,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'json', '~> 2.6', '>= 2.6.2'
   s.add_development_dependency 'rake', '~> 13.0', '>= 13.0.6'
   s.add_development_dependency 'faraday', '~> 2.6', '>= 2.6.0'
-  s.add_development_dependency 'rspec', '~> 3.12', '>= 3.12.0'
+  s.add_development_dependency 'rspec', '~> 3.11', '>= 3.11.0'
 end
